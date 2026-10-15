@@ -41,7 +41,7 @@ type rule struct {
 	repl string
 }
 
-func rules(width, digits, testPrefix string, wide bool) []rule {
+func rules(width, testPrefix string, wide bool) []rule {
 	var rs []rule
 	add := func(re, repl string) { rs = append(rs, rule{regexp.MustCompile(re), repl}) }
 	if wide {
@@ -76,7 +76,7 @@ func main() {
 		width, digits, testPrefix string
 		wide                      bool
 	}{{"32", "7", "ds", false}, {"128", "34", "dq", true}} {
-		rs := rules(target.width, target.digits, target.testPrefix, target.wide)
+		rs := rules(target.width, target.testPrefix, target.wide)
 		for _, in := range sources {
 			data, err := os.ReadFile(in)
 			if err != nil {
